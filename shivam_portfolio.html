@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shivam Kumar SOB – Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink: #0d1b2a;
+    --blue: #1a56a5;
+    --blue-mid: #2d6fcf;
+    --blue-lt: #ebf4ff;
+    --sky: #90c4f0;
+    --mist: #d4e6f8;
+    --sand: #f7f9fc;
+    --white: #ffffff;
+    --accent: #e85d04;
+    --mid: #4a5568;
+    --light: #8a9ab5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 48px;
+    height: 64px;
+    background: rgba(13,27,42,0.96);
+    backdrop-filter: blur(12px);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.3rem;
+    color: var(--white);
+    letter-spacing: -0.5px;
+  }
+  .nav-logo span { color: var(--sky); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--light); text-decoration: none;
+    font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sky); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: var(--ink);
+    position: relative;
+    overflow: hidden;
+    padding-top: 64px;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 50%, #0e3d7a55 0%, transparent 70%),
+                radial-gradient(circle at 20% 80%, #1a56a520 0%, transparent 50%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(144,196,240,0.04) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(144,196,240,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-left {
+    position: relative; z-index: 2;
+    padding: 80px 60px 80px 80px;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(26,86,165,0.25);
+    border: 1px solid rgba(144,196,240,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 0.8rem; font-weight: 500;
+    color: var(--sky);
+    margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 4vw, 4rem);
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+  h1 .accent { color: var(--sky); }
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300; color: #8a9ab5;
+    margin-bottom: 36px; line-height: 1.6; max-width: 440px;
+  }
+  .hero-sub strong { color: var(--mist); font-weight: 500; }
+
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--blue); color: var(--white);
+    padding: 12px 28px; border-radius: 8px;
+    font-size: 0.92rem; font-weight: 500;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: var(--blue-mid); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent; color: var(--sky);
+    padding: 12px 28px; border-radius: 8px;
+    font-size: 0.92rem; font-weight: 500;
+    text-decoration: none; border: 1px solid rgba(144,196,240,0.4);
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--sky); background: rgba(144,196,240,0.08); transform: translateY(-2px); }
+
+  .hero-right {
+    position: relative; z-index: 2;
+    display: flex; align-items: center; justify-content: center;
+    padding: 80px 80px 80px 40px;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(144,196,240,0.15);
+    border-radius: 24px;
+    padding: 40px;
+    width: 100%; max-width: 380px;
+    backdrop-filter: blur(8px);
+  }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .stat-box {
+    background: rgba(26,86,165,0.2);
+    border: 1px solid rgba(144,196,240,0.15);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--sky); line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-label { font-size: 0.76rem; color: var(--light); font-weight: 400; }
+  .tech-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(144,196,240,0.2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-size: 0.78rem; color: var(--mist); font-weight: 400;
+  }
+
+  /* ── SECTION GENERAL ── */
+  section { padding: 100px 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; font-weight: 700;
+    color: var(--blue); letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800; color: var(--ink);
+    letter-spacing: -0.5px; line-height: 1.1;
+    margin-bottom: 48px;
+  }
+  .section-title span { color: var(--blue); }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 64px; align-items: start; }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo-wrap::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 16px;
+    right: -16px; bottom: -16px;
+    background: var(--blue-lt);
+    border-radius: 20px;
+    z-index: 0;
+  }
+  .about-photo {
+    position: relative; z-index: 1;
+    width: 100%; border-radius: 16px;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: top;
+    background: var(--mist);
+    border: 3px solid var(--mist);
+  }
+  .about-photo-placeholder {
+    position: relative; z-index: 1;
+    width: 100%; border-radius: 16px;
+    aspect-ratio: 3/4;
+    background: linear-gradient(135deg, var(--blue-lt) 0%, var(--mist) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px;
+    border: 3px solid var(--mist);
+  }
+  .about-photo-placeholder .avatar-icon { font-size: 5rem; }
+  .about-photo-placeholder .avatar-name {
+    font-family: 'Syne', sans-serif; font-weight: 700;
+    color: var(--blue); font-size: 1.1rem;
+  }
+  .about-text p { color: var(--mid); line-height: 1.8; margin-bottom: 20px; font-size: 1rem; }
+  .contact-chips { display: flex; flex-direction: column; gap: 10px; margin-top: 28px; }
+  .chip {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; color: var(--mid);
+  }
+  .chip-icon { font-size: 1rem; }
+  .chip a { color: var(--blue); text-decoration: none; font-weight: 500; }
+  .chip a:hover { text-decoration: underline; }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--sand); }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 16px;
+    padding: 28px;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(26,86,165,0.1); transform: translateY(-4px); }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .skill-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    color: var(--ink); margin-bottom: 10px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    background: var(--blue-lt);
+    color: var(--blue);
+    font-size: 0.75rem; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--white); }
+  .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .project-card {
+    background: var(--sand);
+    border: 1px solid var(--mist);
+    border-radius: 18px;
+    padding: 32px;
+    position: relative;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--blue), var(--sky));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .project-card:hover { border-color: rgba(26,86,165,0.3); box-shadow: 0 12px 40px rgba(26,86,165,0.1); transform: translateY(-4px); }
+  .project-card:hover::before { opacity: 1; }
+  .project-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem; font-weight: 800;
+    color: var(--mist); line-height: 1;
+    margin-bottom: 12px;
+  }
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.1rem;
+    color: var(--ink); margin-bottom: 8px;
+  }
+  .project-tech {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+  }
+  .project-tech span {
+    background: var(--blue-lt);
+    color: var(--blue);
+    font-size: 0.73rem; font-weight: 500;
+    padding: 3px 10px; border-radius: 100px;
+  }
+  .project-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.65; }
+
+  /* ── CERTIFICATIONS ── */
+  #certs { background: var(--ink); }
+  #certs .section-title { color: var(--white); }
+  .certs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .cert-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(144,196,240,0.15);
+    border-radius: 14px;
+    padding: 28px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cert-card:hover { border-color: var(--sky); background: rgba(26,86,165,0.2); }
+  .cert-icon { font-size: 1.8rem; margin-bottom: 12px; }
+  .cert-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--white); margin-bottom: 4px; }
+  .cert-org { font-size: 0.82rem; color: var(--light); }
+  .cert-status { display: inline-block; margin-top: 10px; font-size: 0.73rem; padding: 3px 10px; border-radius: 100px; }
+  .cert-status.done { background: rgba(26,86,165,0.3); color: var(--sky); }
+  .cert-status.progress { background: rgba(232,93,4,0.2); color: #f4a054; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--sand); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .contact-left p { color: var(--mid); font-size: 1rem; line-height: 1.8; margin-bottom: 32px; }
+  .social-links { display: flex; gap: 14px; flex-wrap: wrap; }
+  .social-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px;
+    background: var(--white); border: 1px solid var(--mist);
+    border-radius: 10px;
+    font-size: 0.88rem; font-weight: 500; color: var(--ink);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  }
+  .social-link:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-lt); transform: translateY(-2px); }
+  .contact-right {
+    background: var(--white);
+    border: 1px solid var(--mist);
+    border-radius: 20px;
+    padding: 40px;
+  }
+  .contact-right h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); margin-bottom: 24px; }
+  .form-field { margin-bottom: 16px; }
+  .form-field label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--mid); margin-bottom: 6px; }
+  .form-field input, .form-field textarea {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--mist); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--ink);
+    background: var(--sand);
+    outline: none; transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--blue); background: var(--white); }
+  .form-btn {
+    width: 100%; background: var(--blue); color: var(--white);
+    border: none; border-radius: 8px;
+    padding: 12px; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; font-weight: 500; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .form-btn:hover { background: var(--blue-mid); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink); color: var(--light);
+    text-align: center; padding: 32px 48px;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--sky); text-decoration: none; }
+  footer span { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 24px; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 60px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .skills-grid, .certs-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .container { padding: 0 24px; }
+    .about-photo-wrap { max-width: 280px; }
+  }
+  @media (max-width: 540px) {
+    .skills-grid, .certs-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SK<span>.</span>SOB</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-tag">Available for Opportunities</div>
+    <h1>Shivam<br/>Kumar <span class="accent">SOB</span></h1>
+    <p class="hero-sub">
+      <strong>Data Scientist · ML Engineer · Data Analyst</strong><br/>
+      Transforming raw data into meaningful insights through Python, SQL, Power BI, and machine learning — with a flair for visual storytelling.
+    </p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#projects">View Projects ↓</a>
+      <a class="btn-outline" href="https://github.com/DevepShivam" target="_blank">GitHub ↗</a>
+      <a class="btn-outline" href="https://www.linkedin.com/in/shivam-kumar-sob-a31916259/" target="_blank">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Projects</div></div>
+        <div class="stat-box"><div class="stat-num">3+</div><div class="stat-label">Years Study</div></div>
+        <div class="stat-box"><div class="stat-num">2</div><div class="stat-label">Certifications</div></div>
+        <div class="stat-box"><div class="stat-num">2024</div><div class="stat-label">DS Fest</div></div>
+      </div>
+      <div class="tech-pills">
+        <span class="pill">Python</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Power BI</span>
+        <span class="pill">Scikit-learn</span>
+        <span class="pill">Pandas</span>
+        <span class="pill">NumPy</span>
+        <span class="pill">Matplotlib</span>
+        <span class="pill">DAX</span>
+        <span class="pill">GitHub</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-photo-wrap fade-up">
+        <div class="about-photo-placeholder">
+          <span class="avatar-icon">👨‍💻</span>
+          <span class="avatar-name">Shivam Kumar SOB</span>
+          <span style="font-size:0.78rem;color:#4a5568;">Data Scientist</span>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:0.1s">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Turning data into<br/><span>decisions</span></h2>
+        <p>I'm a detail-oriented Data Scientist and Machine Learning Engineer currently completing my BCA at Quantum University, Roorkee. I'm passionate about extracting actionable insights from complex datasets and translating them into clear, compelling narratives.</p>
+        <p>My toolkit spans Python (Pandas, NumPy, Scikit-learn), SQL, Power BI, and Excel — paired with strong skills in model building, EDA, and dashboard design. I also bring a creative edge through video-based data storytelling using Filmora, CapCut, and KineMaster.</p>
+        <p>Presented my predictive analytics work at <strong>Data Science Fest 2024</strong> and reached finalist level at university coding competitions.</p>
+        <div class="contact-chips">
+          <div class="chip"><span class="chip-icon">📧</span><a href="mailto:sobshivamsingh@gmail.com">sobshivamsingh@gmail.com</a></div>
+          <div class="chip"><span class="chip-icon">📞</span><span>+91-9258108523 &nbsp;|&nbsp; +977-9765918570</span></div>
+          <div class="chip"><span class="chip-icon">🌐</span><a href="https://officiallportfolio.netlify.app/#portfolio" target="_blank">officiallportfolio.netlify.app</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="fade-up"><div class="section-label">Expertise</div></div>
+    <h2 class="section-title fade-up">Technical <span>Skills</span></h2>
+    <div class="skills-grid">
+      <div class="skill-card fade-up">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Languages & Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span><span class="skill-tag">Pandas</span>
+          <span class="skill-tag">NumPy</span><span class="skill-tag">SQL</span>
+          <span class="skill-tag">Excel</span><span class="skill-tag">DAX</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.05s">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Machine Learning</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Scikit-learn</span><span class="skill-tag">Regression</span>
+          <span class="skill-tag">Classification</span><span class="skill-tag">EDA</span>
+          <span class="skill-tag">Feature Engineering</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.1s">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Data Visualization</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span><span class="skill-tag">Matplotlib</span>
+          <span class="skill-tag">Seaborn</span><span class="skill-tag">Excel Charts</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.15s">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">Platforms</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Jupyter</span><span class="skill-tag">Google Colab</span>
+          <span class="skill-tag">Git</span><span class="skill-tag">GitHub</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.2s">
+        <div class="skill-icon">🎬</div>
+        <div class="skill-name">Content & Editing</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Filmora</span><span class="skill-tag">CapCut</span>
+          <span class="skill-tag">KineMaster</span>
+        </div>
+      </div>
+      <div class="skill-card fade-up" style="transition-delay:0.25s">
+        <div class="skill-icon">💡</div>
+        <div class="skill-name">Core Competencies</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Predictive Modeling</span><span class="skill-tag">Dashboard Design</span>
+          <span class="skill-tag">BI</span><span class="skill-tag">Data Storytelling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="fade-up"><div class="section-label">Work</div></div>
+    <h2 class="section-title fade-up">Selected <span>Projects</span></h2>
+    <div class="projects-grid">
+      <div class="project-card fade-up">
+        <div class="project-num">01</div>
+        <div class="project-title">Superstore Sales Dashboard</div>
+        <div class="project-tech"><span>Power BI</span><span>DAX</span><span>KPIs</span></div>
+        <p class="project-desc">Interactive dashboards with DAX measures to track sales performance, profitability, and regional growth. Delivered actionable business insights through clean visual design.</p>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.05s">
+        <div class="project-num">02</div>
+        <div class="project-title">Hospital Performance Dashboard</div>
+        <div class="project-tech"><span>Power BI</span><span>Data Analytics</span></div>
+        <p class="project-desc">Analytics dashboards to monitor operational efficiency and patient satisfaction using data-driven insights. Focused on making hospital metrics accessible and actionable.</p>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.1s">
+        <div class="project-num">03</div>
+        <div class="project-title">Student Performance Prediction</div>
+        <div class="project-tech"><span>Python</span><span>Scikit-learn</span><span>ML</span></div>
+        <p class="project-desc">ML models (Logistic Regression, Random Forest) to predict student outcomes based on demographic and academic data. Achieved strong classification accuracy with interpretable results.</p>
+      </div>
+      <div class="project-card fade-up" style="transition-delay:0.15s">
+        <div class="project-num">04</div>
+        <div class="project-title">Educational Data Storytelling Series</div>
+        <div class="project-tech"><span>Filmora</span><span>CapCut</span><span>KineMaster</span></div>
+        <p class="project-desc">Educational explainers combining ML visuals, Power BI dashboards, and edited media to communicate analytical results effectively to wider audiences on social platforms.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;" class="fade-up">
+      <a class="btn-primary" href="https://officiallportfolio.netlify.app/#portfolio" target="_blank">View All Projects ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="container">
+    <div class="fade-up"><div class="section-label" style="color:var(--sky)">Credentials</div></div>
+    <h2 class="section-title fade-up" style="color:var(--white)">Certifications &amp; <span>Achievements</span></h2>
+    <div class="certs-grid" style="margin-bottom:48px">
+      <div class="cert-card fade-up">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-name">Data Science with Python</div>
+        <div class="cert-org">Tech Axis</div>
+        <span class="cert-status done">Completed</span>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.05s">
+        <div class="cert-icon">📈</div>
+        <div class="cert-name">Power BI for Business Analytics</div>
+        <div class="cert-org">Coursera</div>
+        <span class="cert-status done">Completed</span>
+      </div>
+      <div class="cert-card fade-up" style="transition-delay:0.1s">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-name">Machine Learning with Python</div>
+        <div class="cert-org">In Progress</div>
+        <span class="cert-status progress">In Progress</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap" class="fade-up">
+      <div class="cert-card" style="flex:1;min-width:220px">
+        <div class="cert-icon">🏆</div>
+        <div class="cert-name">Data Science Fest 2024</div>
+        <div class="cert-org">Presented predictive analytics project to industry audience</div>
+      </div>
+      <div class="cert-card" style="flex:1;min-width:220px">
+        <div class="cert-icon">🥈</div>
+        <div class="cert-name">Coding Competitions</div>
+        <div class="cert-org">Finalist at university-level programming competitions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label fade-up">Get in Touch</div>
+        <h2 class="section-title fade-up">Let's <span>Connect</span></h2>
+        <p class="fade-up">Open to full-time roles, internships, freelance data projects, and collaborations. Whether you need a dashboard, an ML model, or a data storytelling video — let's talk.</p>
+        <div class="social-links fade-up">
+          <a class="social-link" href="https://github.com/DevepShivam" target="_blank">⭐ GitHub</a>
+          <a class="social-link" href="https://www.linkedin.com/in/shivam-kumar-sob-a31916259/" target="_blank">🔗 LinkedIn</a>
+          <a class="social-link" href="https://officiallportfolio.netlify.app/#portfolio" target="_blank">🌐 Portfolio</a>
+          <a class="social-link" href="mailto:sobshivamsingh@gmail.com">📧 Email</a>
+        </div>
+      </div>
+      <div class="contact-right fade-up" style="transition-delay:0.1s">
+        <h3>Send a Message</h3>
+        <div class="form-field">
+          <label>Your Name</label>
+          <input type="text" placeholder="e.g. Jane Doe"/>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="jane@example.com"/>
+        </div>
+        <div class="form-field">
+          <label>Message</label>
+          <textarea rows="4" placeholder="Tell me about the project or opportunity…"></textarea>
+        </div>
+        <button class="form-btn" onclick="alert('Thank you! This form will be linked to your backend. For now, email sobshivamsingh@gmail.com')">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed &amp; built by <strong style="color:var(--sky)">Shivam Kumar SOB</strong> &nbsp;·&nbsp; Made with <span>♥</span> &nbsp;·&nbsp; <a href="mailto:sobshivamsingh@gmail.com">sobshivamsingh@gmail.com</a></p>
+</footer>
+
+<script>
+  // Scroll-triggered fade-ups
+  const els = document.querySelectorAll('.fade-up');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
